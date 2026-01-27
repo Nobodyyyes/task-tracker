@@ -11,7 +11,7 @@
 	</parent>
 
 	<groupId>com.example</groupId>
-	<artifactId>demo</artifactId>
+	<artifactId>task-tracker</artifactId>
 	<name>Task Tracker</name>
 
 	<properties>
