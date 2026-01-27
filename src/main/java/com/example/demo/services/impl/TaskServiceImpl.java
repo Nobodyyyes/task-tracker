@@ -1,6 +1,7 @@
 package com.example.demo.services.impl;
 
 import com.example.demo.enums.TaskStatus;
+import com.example.demo.exceptions.TaskAlreadyExistsException;
 import com.example.demo.exceptions.TaskNotFoundException;
 import com.example.demo.mappers.TaskMapper;
 import com.example.demo.models.Task;
@@ -33,21 +34,44 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public Task createTask(Task newTask) {
-        return null;
+
+        if (existsById(newTask.getId())) {
+            throw new TaskAlreadyExistsException("Task by ID [%s] already exists");
+        }
+
+        return taskMapper.toModel(taskRepository.save(taskMapper.toEntity(newTask)));
     }
 
     @Override
     public Task updateTask(Task updateTask) {
-        return null;
+        Task task = getByTaskId(updateTask.getId());
+
+        task.setId(updateTask.getId());
+        task.setTitle(updateTask.getTitle());
+        task.setDescription(updateTask.getDescription());
+        task.setTaskStatus(updateTask.getTaskStatus());
+        task.setTaskPriority(updateTask.getTaskPriority());
+        task.setDueDate(updateTask.getDueDate());
+        task.setUserId(updateTask.getUserId());
+
+        return taskMapper.toModel(taskRepository.save(taskMapper.toEntity(task)));
     }
 
     @Override
     public Task changeTaskStatus(Long taskId, TaskStatus taskStatus) {
-        return null;
+        Task task = getByTaskId(taskId);
+        task.setTaskStatus(taskStatus);
+
+        return taskMapper.toModel(taskRepository.save(taskMapper.toEntity(task)));
     }
 
     @Override
     public void deleteTask(Long taskId) {
+        taskRepository.deleteById(taskId);
+    }
 
+    @Override
+    public boolean existsById(Long id) {
+        return taskRepository.existsById(id);
     }
 }

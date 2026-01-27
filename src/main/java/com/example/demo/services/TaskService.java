@@ -18,4 +18,6 @@ public interface TaskService {
     Task changeTaskStatus(Long taskId, TaskStatus taskStatus);
 
     void deleteTask(Long taskId);
+
+    boolean existsById(Long id);
 }
