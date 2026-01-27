@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: Task Tracker
+  profiles:
+    include: datasource

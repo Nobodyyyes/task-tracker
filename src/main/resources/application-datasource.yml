@@ -1,0 +1,11 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/task_tracker
+    username: task_user
+    password: 12345678
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
