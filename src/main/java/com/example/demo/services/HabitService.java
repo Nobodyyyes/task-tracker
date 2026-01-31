@@ -15,4 +15,6 @@ public interface HabitService {
     Habit updateHabit(Habit updateHabit);
 
     void deactivateHabit(Long habitId);
+
+    boolean existsById(Long habitId);
 }
