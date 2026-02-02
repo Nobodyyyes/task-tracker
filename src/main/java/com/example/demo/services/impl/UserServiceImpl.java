@@ -45,7 +45,6 @@ public class UserServiceImpl implements UserService {
         }
 
         User user = User.builder()
-                .id(newUser.getId())
                 .lastname(newUser.getLastname())
                 .firstname(newUser.getFirstname())
                 .username(newUser.getUsername())

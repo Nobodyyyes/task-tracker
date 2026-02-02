@@ -10,6 +10,7 @@ import com.example.demo.services.TaskService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -22,7 +23,13 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public List<Task> getAllTasksByUserId(Long userId) {
-        return taskMapper.toModels(taskRepository.findAllByUserId(userId));
+        List<Task> tasks = taskMapper.toModels(taskRepository.findAllByUserId(userId));
+
+        if (tasks.isEmpty()) {
+            return Collections.emptyList();
+        }
+
+        return tasks;
     }
 
     @Override
