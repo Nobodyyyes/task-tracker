@@ -14,7 +14,7 @@ public class HabitController {
 
     private final HabitService habitService;
 
-    @GetMapping("/{userId}")
+    @GetMapping("/users/{userId}")
     public List<Habit> getAllHabitsByUserId(@PathVariable Long userId) {
         return habitService.getAllHabitsByUserId(userId);
     }

@@ -15,7 +15,7 @@ public class TaskController {
 
     private final TaskService taskService;
 
-    @GetMapping("/{userId}")
+    @GetMapping("/users/{userId}")
     public List<Task> getAllTaskByUserId(@PathVariable Long userId) {
         return taskService.getAllTasksByUserId(userId);
     }
@@ -40,8 +40,8 @@ public class TaskController {
         return taskService.changeTaskStatus(taskId, taskStatus);
     }
 
-    @DeleteMapping
-    public void deleteTask(Long taskId) {
+    @DeleteMapping("/{taskId}")
+    public void deleteTask(@PathVariable Long taskId) {
         taskService.deleteTask(taskId);
     }
 }
