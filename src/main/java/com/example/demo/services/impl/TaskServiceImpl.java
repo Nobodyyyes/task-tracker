@@ -1,7 +1,6 @@
 package com.example.demo.services.impl;
 
 import com.example.demo.enums.TaskStatus;
-import com.example.demo.exceptions.TaskAlreadyExistsException;
 import com.example.demo.exceptions.TaskNotFoundException;
 import com.example.demo.mappers.TaskMapper;
 import com.example.demo.models.Task;
@@ -42,11 +41,17 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public Task createTask(Task newTask) {
 
-        if (existsById(newTask.getId())) {
-            throw new TaskAlreadyExistsException("Task by ID [%s] already exists");
-        }
+        Task task = Task.builder()
+                .id(newTask.getId())
+                .title(newTask.getTitle())
+                .description(newTask.getDescription())
+                .taskStatus(newTask.getTaskStatus())
+                .taskPriority(newTask.getTaskPriority())
+                .dueDate(newTask.getDueDate())
+                .userId(newTask.getUserId())
+                .build();
 
-        return taskMapper.toModel(taskRepository.save(taskMapper.toEntity(newTask)));
+        return taskMapper.toModel(taskRepository.save(taskMapper.toEntity(task)));
     }
 
     @Override

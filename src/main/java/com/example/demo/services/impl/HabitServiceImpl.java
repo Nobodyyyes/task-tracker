@@ -65,7 +65,7 @@ public class HabitServiceImpl implements HabitService {
 
     @Override
     public void deactivateHabit(Long habitId) {
-
+        habitRepository.deleteById(habitId);
     }
 
     @Override

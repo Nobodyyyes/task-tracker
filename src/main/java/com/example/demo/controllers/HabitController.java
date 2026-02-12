@@ -34,7 +34,7 @@ public class HabitController {
         return habitService.updateHabit(updateHabit);
     }
 
-    @PutMapping("/deactivate/{habitId}")
+    @DeleteMapping("/deactivate/{habitId}")
     public void deactivateHabit(@PathVariable Long habitId) {
         habitService.deactivateHabit(habitId);
     }
