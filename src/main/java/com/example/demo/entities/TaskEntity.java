@@ -1,5 +1,6 @@
 package com.example.demo.entities;
 
+import com.example.demo.enums.Tag;
 import com.example.demo.enums.TaskPriority;
 import com.example.demo.enums.TaskStatus;
 import jakarta.persistence.*;
@@ -29,9 +30,11 @@ public class TaskEntity extends BaseEntity {
     private String description;
 
     @Column(name = "TASK_STATUS")
+    @Enumerated(EnumType.STRING)
     private TaskStatus taskStatus;
 
     @Column(name = "PRIORITY")
+    @Enumerated(EnumType.STRING)
     private TaskPriority taskPriority;
 
     @Column(name = "DUE_DATE")
@@ -39,4 +42,8 @@ public class TaskEntity extends BaseEntity {
 
     @Column(name = "USER_ID")
     private Long userId;
+
+    @Column(name = "TAG")
+    @Enumerated(EnumType.STRING)
+    private Tag tag;
 }

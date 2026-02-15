@@ -19,6 +19,7 @@ public class TaskMapper implements BaseMapper<Task, TaskEntity> {
                 .taskPriority(entity.getTaskPriority())
                 .dueDate(entity.getDueDate())
                 .userId(entity.getUserId())
+                .tag(entity.getTag())
                 .build();
     }
 
@@ -34,6 +35,7 @@ public class TaskMapper implements BaseMapper<Task, TaskEntity> {
                 .taskPriority(model.getTaskPriority())
                 .dueDate(model.getDueDate())
                 .userId(model.getUserId())
+                .tag(model.getTag())
                 .build();
     }
 }

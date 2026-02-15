@@ -1,5 +1,6 @@
 package com.example.demo.models;
 
+import com.example.demo.enums.Tag;
 import com.example.demo.enums.TaskPriority;
 import com.example.demo.enums.TaskStatus;
 import lombok.*;
@@ -20,4 +21,5 @@ public class Task {
     private TaskPriority taskPriority;
     private LocalDateTime dueDate;
     private Long userId;
+    private Tag tag;
 }

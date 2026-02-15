@@ -1,5 +1,6 @@
 package com.example.demo.services.impl;
 
+import com.example.demo.entities.TaskEntity;
 import com.example.demo.enums.TaskStatus;
 import com.example.demo.exceptions.TaskNotFoundException;
 import com.example.demo.mappers.TaskMapper;
@@ -49,6 +50,7 @@ public class TaskServiceImpl implements TaskService {
                 .taskPriority(newTask.getTaskPriority())
                 .dueDate(newTask.getDueDate())
                 .userId(newTask.getUserId())
+                .tag(newTask.getTag())
                 .build();
 
         return taskMapper.toModel(taskRepository.save(taskMapper.toEntity(task)));
@@ -56,7 +58,8 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public Task updateTask(Task updateTask) {
-        Task task = getByTaskId(updateTask.getId());
+        TaskEntity task = taskRepository.findById(updateTask.getId())
+                .orElseThrow(() -> new TaskNotFoundException("Task by ID [%s] not found".formatted(updateTask.getId())));
 
         task.setId(updateTask.getId());
         task.setTitle(updateTask.getTitle());
@@ -65,8 +68,9 @@ public class TaskServiceImpl implements TaskService {
         task.setTaskPriority(updateTask.getTaskPriority());
         task.setDueDate(updateTask.getDueDate());
         task.setUserId(updateTask.getUserId());
+        task.setTag(updateTask.getTag());
 
-        return taskMapper.toModel(taskRepository.save(taskMapper.toEntity(task)));
+        return taskMapper.toModel(taskRepository.save(task));
     }
 
     @Override
