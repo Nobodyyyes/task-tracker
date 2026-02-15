@@ -4,10 +4,13 @@ import com.example.demo.enums.Tag;
 import com.example.demo.enums.TaskPriority;
 import com.example.demo.enums.TaskStatus;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -38,7 +41,7 @@ public class TaskEntity extends BaseEntity {
     private TaskPriority taskPriority;
 
     @Column(name = "DUE_DATE")
-    private LocalDateTime dueDate;
+    private LocalDate dueDate;
 
     @Column(name = "USER_ID")
     private Long userId;

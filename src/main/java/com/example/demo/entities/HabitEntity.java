@@ -1,6 +1,7 @@
 package com.example.demo.entities;
 
 import com.example.demo.enums.HabitFrequency;
+import com.example.demo.enums.Tag;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -41,4 +42,8 @@ public class HabitEntity {
 
     @Column(name = "USER_ID")
     private Long userId;
+
+    @Column(name = "TAG")
+    @Enumerated(EnumType.STRING)
+    private Tag tag;
 }

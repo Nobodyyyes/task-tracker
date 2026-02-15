@@ -1,5 +1,6 @@
 package com.example.demo.services.impl;
 
+import com.example.demo.entities.HabitEntity;
 import com.example.demo.exceptions.HabitNotFoundException;
 import com.example.demo.mappers.HabitMapper;
 import com.example.demo.models.Habit;
@@ -30,6 +31,7 @@ public class HabitServiceImpl implements HabitService {
                 .endDate(newHabit.getEndDate())
                 .active(newHabit.isActive())
                 .userId(newHabit.getUserId())
+                .tag(newHabit.getTag())
                 .build();
 
         return habitMapper.toModel(habitRepository.save(habitMapper.toEntity(habit)));
@@ -50,7 +52,9 @@ public class HabitServiceImpl implements HabitService {
     @Override
     public Habit updateHabit(Habit updateHabit) {
 
-        Habit habit = getById(updateHabit.getId());
+        HabitEntity habit = habitRepository.findById(updateHabit.getId())
+                .orElseThrow(() -> new HabitNotFoundException("Habit by ID [%s] not found".formatted(updateHabit.getId())));
+
         habit.setId(updateHabit.getId());
         habit.setTitle(updateHabit.getTitle());
         habit.setDescription(updateHabit.getDescription());
@@ -59,8 +63,9 @@ public class HabitServiceImpl implements HabitService {
         habit.setEndDate(updateHabit.getEndDate());
         habit.setActive(updateHabit.isActive());
         habit.setUserId(updateHabit.getUserId());
+        habit.setTag(updateHabit.getTag());
 
-        return habitMapper.toModel(habitRepository.save(habitMapper.toEntity(habit)));
+        return habitMapper.toModel(habitRepository.save(habit));
     }
 
     @Override

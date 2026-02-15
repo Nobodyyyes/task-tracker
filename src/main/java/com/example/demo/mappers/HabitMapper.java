@@ -20,6 +20,7 @@ public class HabitMapper implements BaseMapper<Habit, HabitEntity> {
                 .endDate(entity.getEndDate())
                 .active(entity.isActive())
                 .userId(entity.getUserId())
+                .tag(entity.getTag())
                 .build();
     }
 
@@ -36,6 +37,7 @@ public class HabitMapper implements BaseMapper<Habit, HabitEntity> {
                 .endDate(model.getEndDate())
                 .active(model.isActive())
                 .userId(model.getUserId())
+                .tag(model.getTag())
                 .build();
     }
 }

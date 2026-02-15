@@ -1,6 +1,7 @@
 package com.example.demo.models;
 
 import com.example.demo.enums.HabitFrequency;
+import com.example.demo.enums.Tag;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -20,4 +21,5 @@ public class Habit {
     private LocalDate endDate;
     private boolean active;
     private Long userId;
+    private Tag tag;
 }

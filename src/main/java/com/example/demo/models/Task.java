@@ -5,7 +5,7 @@ import com.example.demo.enums.TaskPriority;
 import com.example.demo.enums.TaskStatus;
 import lombok.*;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -19,7 +19,7 @@ public class Task {
     private String description;
     private TaskStatus taskStatus;
     private TaskPriority taskPriority;
-    private LocalDateTime dueDate;
+    private LocalDate dueDate;
     private Long userId;
     private Tag tag;
 }
